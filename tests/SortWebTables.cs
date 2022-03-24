@@ -19,10 +19,10 @@ namespace CSharpSeleniumFramework.tests
         {
             ArrayList a = new ArrayList();
             ArrayList b = new ArrayList();
-            SelectElement dropdown = new SelectElement(driver.FindElement(By.Id("page-menu")));
+            SelectElement dropdown = new SelectElement(driver.Value.FindElement(By.Id("page-menu")));
             dropdown.SelectByValue("20");
             //step 1 - Get all veggie into arraylist
-            IList<IWebElement> veggies = driver.FindElements(By.XPath("//td[1]"));
+            IList<IWebElement> veggies = driver.Value.FindElements(By.XPath("//td[1]"));
             foreach (IWebElement veggie in veggies)
             {
                 a.Add(veggie.Text);
@@ -42,10 +42,10 @@ namespace CSharpSeleniumFramework.tests
 
             //step 3 - Go and Click column
             //th[contains(@aria-label,'fruit name')]
-            driver.FindElement(By.CssSelector("th[aria-label *= 'fruit name']")).Click();
+            driver.Value.FindElement(By.CssSelector("th[aria-label *= 'fruit name']")).Click();
 
             //step 4 Get all veggie names into arrayList B
-            IList<IWebElement> sortedVeggies = driver.FindElements(By.XPath("//td[1]"));
+            IList<IWebElement> sortedVeggies = driver.Value.FindElements(By.XPath("//td[1]"));
             foreach (IWebElement veggie in sortedVeggies)
             {
                 b.Add(veggie.Text);
