@@ -3,13 +3,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace CSharpSeleniumFramework.utilities
@@ -27,6 +22,12 @@ namespace CSharpSeleniumFramework.utilities
             driver.Manage().Window.Maximize();
             driver.Url = "https://rahulshettyacademy.com/loginpagePractise";
         }
+        public IWebDriver getDriver()
+        {
+            return driver; ;
+
+        }
+        //factory design pattern
         public void InitBrowser(String browserName)
         {
             switch (browserName)
