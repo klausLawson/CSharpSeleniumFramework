@@ -19,6 +19,12 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
     <PackageReference Include="WebDriverManager" Version="2.12.3" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="utilities\testData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
 		<Copy SourceFiles="App.config" DestinationFiles="$(Outdir)\testhost.dll.config" />
 	</Target>

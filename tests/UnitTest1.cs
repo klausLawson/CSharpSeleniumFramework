@@ -12,14 +12,17 @@ namespace CSharpSeleniumFramework.tests
 {
     class E2ETest : Base
     {        
-        [Test]
-        public void EndToEndFlow()
+        [Test, TestCaseSource("AddTestDataConfig")]
+       // [TestCase("rahulshettyacademy", "learning")]
+       // [TestCase("rahulshetty", "learning")]
+       //[TestCaseSource("AddTestDataConfig")]
+        public void EndToEndFlow(String username, String password, String[] expectedProducts)
         {            
-            String[] expectedProducts = { "iphone X", "Blackberry" };
+            //String[] expectedProducts = { "iphone X", "Blackberry" };
             String[] actualProducts = new string[2];
             LoginPage loginPage = new LoginPage(getDriver());
 
-            ProductsPage productPage = loginPage.validLogin("rahulshettyacademy","learning");
+            ProductsPage productPage = loginPage.validLogin(username, password);
             productPage.waitForPageDisplay();
             IList<IWebElement> products = productPage.getCards();
             foreach (IWebElement product in products)
@@ -49,6 +52,13 @@ namespace CSharpSeleniumFramework.tests
 
             String confirmText = confirmationPage.getSuccessText().Text;
             StringAssert.Contains("Success", confirmText);
+        }
+
+        public static IEnumerable<TestCaseData> AddTestDataConfig()
+        {
+            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"),getDataParser().extractDataArray("products"));
+            yield return new TestCaseData(getDataParser().extractData("username_wrong"), getDataParser().extractData("password"), getDataParser().extractDataArray("products"));
+            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password_wrong"), getDataParser().extractDataArray("products"));
         }
     }
 }

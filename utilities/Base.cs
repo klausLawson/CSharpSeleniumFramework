@@ -46,6 +46,11 @@ namespace CSharpSeleniumFramework.utilities
                     break; 
             }
         }
+
+        public static JsonReader getDataParser()
+        {
+            return new JsonReader();
+        }
         [TearDown]
         public void AfterTest()
         {
